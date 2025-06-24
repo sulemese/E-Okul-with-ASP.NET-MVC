@@ -10,7 +10,7 @@ Bu proje, okul yönetim sistemine benzer şekilde ASP.NET MVC ve Entity Framewor
 - Bootstrap 4
 - Razor View Engine
 - C#
-https://github.com/sulemese/E-Okul-with-ASP.NET-MVC/blob/main/Images/ogrenci-listesi.png
+
 ## 📂 Modüller ve Özellikler
 
 ### 🎓 Dersler
@@ -46,7 +46,7 @@ Silme işlemlerinde veriler kalıcı olarak silinmez, `Aktif` kolonuyla kontrol 
 
 ## 📸 Ekran Görüntüleri
 
-(./Images/ogrenci-listesi.png)
+![Öğrenci Listesi](./Images/ogrenci-listesi.png)
 
 ## 📌 Kurulum
 

@@ -1,0 +1,41 @@
+﻿@model OgrenciNotMvc.Models.EntityFramework.TBLOGRENCILER
+@{
+    ViewBag.Title = "OgrenciGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.OGRID)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.OGRAD)
+            @Html.TextBoxFor(m => m.OGRAD, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group" style="margin-top:10px">
+            @Html.LabelFor(m => m.OGRSOYAD)
+            @Html.TextBoxFor(m => m.OGRSOYAD, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group" style="margin-top:10px">
+            @Html.LabelFor(m => m.OGRRESIM)
+            @Html.TextBoxFor(m => m.OGRRESIM, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group" style="margin-top:10px">
+            @Html.LabelFor(m => m.OGRKULUP)
+
+        </div>
+        @Html.DropDownListFor(m => m.OGRKULUP, (List<SelectListItem>)ViewBag.Kulupler, new { @class = "form-control" })
+
+
+        <div style="margin-top:10px">
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </div>
+    }
+</div>

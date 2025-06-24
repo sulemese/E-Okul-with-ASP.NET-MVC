@@ -1,0 +1,42 @@
+﻿@using OgrenciNotMvc.Models.EntityFramework
+@model List<TBLKULUPLER>
+
+
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kulüp Listesi</h2>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>KULÜP ID</th>
+        <th>KULÜP ADI</th>
+        <th>KULÜPTEKİ ÖĞRENCİ SAYISI</th>
+        <th>İŞLEMLER</th>
+        
+    </tr>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.KULUPID</td>
+                <td>@item.KULUPAD</td>
+                <td>@item.TBLOGRENCILER.Where(k=>k.AKTİFLİK==true).Count()</td>
+                <td><a href="/Kulüpler/KulüpSil/@item.KULUPID" class="btn btn-danger">Sil</a>
+                <a href="/Kulüpler/KulüpGuncelle/@item.KULUPID" class="btn btn-success">Güncelle</a></td> 
+                
+            </tr>
+
+
+        }
+    </tbody>
+
+</table>
+
+<a href="/Kulüpler/KulüpEkle" class="btn btn-primary">Yeni Kulüp Kaydı</a>
+
+<a href="/Kulüpler/ÖğrenciKulüpKayıt" class="btn btn-primary">Öğrenci Kulübü Kayıt</a>

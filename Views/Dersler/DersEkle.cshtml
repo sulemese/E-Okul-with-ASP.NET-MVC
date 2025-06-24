@@ -1,0 +1,23 @@
+﻿@using OgrenciNotMvc.Models.EntityFramework
+@model List<TBLDERSLER>
+@{
+    ViewBag.Title = "DersEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<form method="post" class="form-group">
+
+    <div>
+        <label>Ders Adı:</label>
+        <input type="text" class="form-control" name="DERS ADI">
+    </div>
+
+    <div style="margin-top:10px"> 
+        <button class="btn btn-info">Ders Ekle</button>
+    </div>
+
+</form>
+

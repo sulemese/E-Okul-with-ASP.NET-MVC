@@ -1,0 +1,42 @@
+﻿@using OgrenciNotMvc.Models.EntityFramework
+@model List<TBLOGRENCILER>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Öğrenci Listesi</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ÖĞRENCİ ID</th>
+        <th>ADI</th>
+        <th>SOYADI</th>
+        <th>CİNSİYET</th>
+        <th>KULÜP</th>
+        <th>İŞLEMLER</th>
+    </tr>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.OGRID</td>
+            <td>@item.OGRAD</td>
+            <td>@item.OGRSOYAD</td>
+            <td>@item.OGRCINSIYET</td>
+            <td>@item.TBLKULUPLER.KULUPAD</td>
+            <td>
+                
+                
+                @Html.ActionLink("Sil", "OgrenciSil", new { id = item.OGRID }, new { @class = "btn btn-danger", onclick = "return confirm('Bu öğrenciyi silmek istediğinize emin misiniz?');" })
+                @Html.ActionLink("Güncelle", "OgrenciGuncelle", new { id = item.OGRID }, new { @class = "btn btn-success" })
+
+            </td>
+        </tr>
+
+        }
+        </tbody>
+    </table>
+
+<a href="/Ogrenciler/OgrenciEkle" class="btn btn-primary">Yeni Öğrenci Kaydı</a>

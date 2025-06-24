@@ -1,0 +1,52 @@
+﻿@model List<OgrenciNotMvc.Models.EntityFramework.TBLNOTLAR>
+
+@{
+    ViewBag.Title = "Not Girişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>📝 Not Girişi</h2>
+
+<!-- DERS SEÇME FORMU -->
+<form method="get" action="/Notlar/NotGir">
+    <div class="form-group">
+        <label><b>Ders Seçiniz:</b></label>
+        @Html.DropDownList("dersId", (List<SelectListItem>)ViewBag.Dersler, "Ders Seç", new { @class = "form-control", onchange = "this.form.submit();" })
+    </div>
+</form>
+
+
+
+@if (Model != null)
+{
+    <form method="post" action="/Notlar/NotKaydet">
+        <table class="table table-bordered table-striped mt-4">
+            <tr>
+                <th>Öğrenci</th>
+                <th>1. Sınav</th>
+                <th>2. Sınav</th>
+                <th>3. Sınav</th>
+                <th>Proje</th>
+
+            </tr>
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+
+                <tr>
+                    <td>
+                        @Model[i].TBLOGRENCILER.OGRAD @Model[i].TBLOGRENCILER.OGRSOYAD
+                        <input type="hidden" name="notlar[@i].NOTID" value="@Model[i].NOTID" />
+                    </td>
+                    <td><input type="number" name="notlar[@i].SINAV1" value="@Model[i].SINAV1" class="form-control" /></td>
+                    <td><input type="number" name="notlar[@i].SINAV2" value="@Model[i].SINAV2" class="form-control" /></td>
+                    <td><input type="number" name="notlar[@i].SINAV3" value="@Model[i].SINAV3" class="form-control" /></td>
+                    <td><input type="number" name="notlar[@i].PROJE" value="@Model[i].PROJE" class="form-control" /></td>
+
+                </tr>
+            }
+        </table>
+
+        <button type="submit" class="btn btn-primary">💾 Notları Kaydet</button>
+    </form>
+}

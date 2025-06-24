@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbMvcOkulModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DbMvcOkulEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="DbMvcOkulModel.sysdiagrams" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbMvcOkulModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbMvcOkulModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="TBLDERSLER" EntityType="DbMvcOkulModel.TBLDERSLER" />
+    <EntitySet Name="TBLKULUPLER" EntityType="DbMvcOkulModel.TBLKULUPLER" />
+    <EntitySet Name="TBLNOTLAR" EntityType="DbMvcOkulModel.TBLNOTLAR" />
+    <EntitySet Name="TBLOGRENCILER" EntityType="DbMvcOkulModel.TBLOGRENCILER" />
+    <AssociationSet Name="FK_TBLNOTLAR_TBLDERSLER" Association="DbMvcOkulModel.FK_TBLNOTLAR_TBLDERSLER">
+      <End Role="TBLDERSLER" EntitySet="TBLDERSLER" />
+      <End Role="TBLNOTLAR" EntitySet="TBLNOTLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLOGRENCILER_tblkulupler" Association="DbMvcOkulModel.FK_TBLOGRENCILER_tblkulupler">
+      <End Role="TBLKULUPLER" EntitySet="TBLKULUPLER" />
+      <End Role="TBLOGRENCILER" EntitySet="TBLOGRENCILER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLNOTLAR_TBLOGRENCILER" Association="DbMvcOkulModel.FK_TBLNOTLAR_TBLOGRENCILER">
+      <End Role="TBLOGRENCILER" EntitySet="TBLOGRENCILER" />
+      <End Role="TBLNOTLAR" EntitySet="TBLNOTLAR" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="TBLDERSLER">
+    <Key>
+      <PropertyRef Name="DERSID" />
+    </Key>
+    <Property Name="DERSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DERSAD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLNOTLAR" Relationship="DbMvcOkulModel.FK_TBLNOTLAR_TBLDERSLER" FromRole="TBLDERSLER" ToRole="TBLNOTLAR" />
+    <Property Name="HAFTALIK_SAAT" Type="Int32" />
+    <Property Name="AKTİFLİK" Type="Boolean" DefaultValue="True" />
+  </EntityType>
+  <EntityType Name="TBLKULUPLER">
+    <Key>
+      <PropertyRef Name="KULUPID" />
+    </Key>
+    <Property Name="KULUPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KULUPAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KULUPKONTENJAN" Type="Int16" />
+    <Property Name="AKTİFLİK" Type="Boolean" DefaultValue="True" />
+    <NavigationProperty Name="TBLOGRENCILER" Relationship="DbMvcOkulModel.FK_TBLOGRENCILER_tblkulupler" FromRole="TBLKULUPLER" ToRole="TBLOGRENCILER" />
+  </EntityType>
+  <EntityType Name="TBLNOTLAR">
+    <Key>
+      <PropertyRef Name="NOTID" />
+    </Key>
+    <Property Name="NOTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DERSID" Type="Int32" />
+    <Property Name="OGRID" Type="Int32" />
+    <Property Name="SINAV1" Type="Byte" />
+    <Property Name="SINAV2" Type="Byte" />
+    <Property Name="SINAV3" Type="Byte" />
+    <Property Name="PROJE" Type="Byte" />
+    <Property Name="ORTALAMA" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DURUM" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TBLDERSLER" Relationship="DbMvcOkulModel.FK_TBLNOTLAR_TBLDERSLER" FromRole="TBLNOTLAR" ToRole="TBLDERSLER" />
+    <NavigationProperty Name="TBLOGRENCILER" Relationship="DbMvcOkulModel.FK_TBLNOTLAR_TBLOGRENCILER" FromRole="TBLNOTLAR" ToRole="TBLOGRENCILER" />
+    <Property Name="AKTİFLİK" Type="Boolean" DefaultValue="True" />
+  </EntityType>
+  <EntityType Name="TBLOGRENCILER">
+    <Key>
+      <PropertyRef Name="OGRID" />
+    </Key>
+    <Property Name="OGRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OGRAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OGRSOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OGRRESIM" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OGRCINSIYET" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="OGRKULUP" Type="Int32" />
+    <NavigationProperty Name="TBLKULUPLER" Relationship="DbMvcOkulModel.FK_TBLOGRENCILER_tblkulupler" FromRole="TBLOGRENCILER" ToRole="TBLKULUPLER" />
+    <NavigationProperty Name="TBLNOTLAR" Relationship="DbMvcOkulModel.FK_TBLNOTLAR_TBLOGRENCILER" FromRole="TBLOGRENCILER" ToRole="TBLNOTLAR" />
+    <Property Name="AKTİFLİK" Type="Boolean" DefaultValue="True" />
+  </EntityType>
+  <Association Name="FK_TBLNOTLAR_TBLDERSLER">
+    <End Type="DbMvcOkulModel.TBLDERSLER" Role="TBLDERSLER" Multiplicity="0..1" />
+    <End Type="DbMvcOkulModel.TBLNOTLAR" Role="TBLNOTLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLDERSLER">
+        <PropertyRef Name="DERSID" />
+      </Principal>
+      <Dependent Role="TBLNOTLAR">
+        <PropertyRef Name="DERSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLOGRENCILER_tblkulupler">
+    <End Type="DbMvcOkulModel.TBLKULUPLER" Role="TBLKULUPLER" Multiplicity="0..1" />
+    <End Type="DbMvcOkulModel.TBLOGRENCILER" Role="TBLOGRENCILER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKULUPLER">
+        <PropertyRef Name="KULUPID" />
+      </Principal>
+      <Dependent Role="TBLOGRENCILER">
+        <PropertyRef Name="OGRKULUP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLNOTLAR_TBLOGRENCILER">
+    <End Type="DbMvcOkulModel.TBLOGRENCILER" Role="TBLOGRENCILER" Multiplicity="0..1" />
+    <End Type="DbMvcOkulModel.TBLNOTLAR" Role="TBLNOTLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLOGRENCILER">
+        <PropertyRef Name="OGRID" />
+      </Principal>
+      <Dependent Role="TBLNOTLAR">
+        <PropertyRef Name="OGRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

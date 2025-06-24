@@ -1,0 +1,43 @@
+﻿@model OgrenciNotMvc.Models.EntityFramework.TBLOGRENCILER
+@{
+    ViewBag.Title = "OgrenciEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <form method="post" class="form-group">
+        <div>
+            <label>Öğrenci Adı</label>
+            <input type="text" class="form-control" name="OGRAD" />
+            @Html.ValidationMessageFor(m => m.OGRAD, "", new { @class = "text-danger" })
+        </div>
+
+        <div style="margin-top:10px">
+            <label>Öğrenci Soyadı</label>
+            <input type="text" class="form-control" name="OGRSOYAD" />
+            @Html.ValidationMessageFor(m => m.OGRSOYAD, "", new { @class = "text-danger" })
+        </div>
+
+        <div style="margin-top:10px">
+            <label>Öğrenci Fotoğrafı</label>
+            <input type="text" class="form-control" name="OGRRESIM" />
+            @Html.ValidationMessageFor(m => m.OGRRESIM, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div style="margin-top:10px">
+            <label>Öğrenci Kulüp</label>
+        </div>
+        @Html.DropDownListFor(m => m.OGRKULUP, (List<SelectListItem>)ViewBag.Kulupler, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OGRKULUP, "", new { @class = "text-danger" })
+        <div style="margin-top:10px">
+            <button class="btn btn-primary">Öğrenci Ekle</button>
+        </div>
+
+    </form>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

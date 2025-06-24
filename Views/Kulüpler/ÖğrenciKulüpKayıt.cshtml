@@ -1,0 +1,51 @@
+﻿
+@model List<OgrenciNotMvc.Models.EntityFramework.TBLOGRENCILER>
+
+@{
+    ViewBag.Title = "ÖğrenciKulüpKayıt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Kulüp SEÇME FORMU -->
+<form method="get" action="/Kulüpler/ÖğrenciKulüpKayıt">
+    <div class="form-group">
+        <label><b>Kulüp Seçiniz:</b></label>
+        @Html.DropDownList("kulüpId", (List<SelectListItem>)ViewBag.Kulüpler, "Kulüp Seç", new { @class = "form-control", onchange = "this.form.submit();" })
+    </div>
+</form>
+
+@{ 
+    var seciliOgrenciIdler = ViewBag.kulubekayıtlıogrencıleridleri as List<int>;
+}
+
+    
+
+    @if (Model != null)
+    {
+        <form method="post" action="/Kulüpler/ÖğrenciKulüpKaydet">
+            <table class="table table-bordered table-striped mt-4">
+                <tr>
+                    <th>Öğrenci</th>
+                    <th>Durum</th>
+
+
+                </tr>
+
+                @for (int i = 0; i < Model.Count; i++)
+                {
+
+                    <tr>
+                        <td>
+                            @Model[i].OGRAD @Model[i].OGRSOYAD
+                        </td>
+
+                        <td><input type="checkbox" name="@Model[i].OGRID" value="@Model[i].OGRID" @(seciliOgrenciIdler.Contains(Model[i].OGRID) ? "checked" : "") class="form-control" /></td>
+                    </tr>
+                }
+            </table>
+
+            <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+        </form>
+    }
+
+

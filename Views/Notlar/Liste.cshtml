@@ -1,0 +1,65 @@
+﻿@using OgrenciNotMvc.Models.EntityFramework
+@model List<TBLNOTLAR>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form method="get" action="/Notlar/Liste">
+    <div class="form-group">
+        <label><b>Ders Seçiniz:</b></label>
+        @Html.DropDownList("dersId", (List<SelectListItem>)ViewBag.Dersler, "Ders Seç", new { @class = "form-control", onchange = "this.form.submit();" })
+    </div>
+</form>
+
+@if (Model != null) { 
+<h2>Not Listesi</h2>
+<table class="table table-bordered table-striped mt-4">
+    <tr>
+        <th>Öğrenci</th>
+        <th>Ders</th>
+        <th>1. Sınav</th>
+        <th>2. Sınav</th>
+        <th>3. Sınav</th>
+        <th>Proje</th>
+        <th>Ortalama</th>
+        <th>Durum</th>
+
+    </tr>
+
+    @foreach (var not in Model.Where(k=> k.AKTİFLİK==true))
+    {
+
+        <tr>
+            <td>
+                @not.TBLOGRENCILER.OGRAD @not.TBLOGRENCILER.OGRSOYAD
+                <input type="hidden" name="@not.NOTID" value="@not.NOTID" />
+            </td>
+            <td>@not.TBLDERSLER.DERSAD</td>
+            <td>@not.SINAV1</td>
+            <td>@not.SINAV2</td>
+            <td>@not.SINAV3</td>
+            <td>@not.PROJE</td>
+            <td>@not.ORTALAMA</td>
+            @if (not.DURUM) 
+            { 
+                <td>Geçti</td>
+            }
+            else
+            {
+                <td>Kaldı</td>
+            }
+            
+
+        </tr>
+    }
+</table>
+
+
+<a href="/Notlar/NotGir" class="btn btn-primary"> Not Girişi Yap </a>
+<br />
+
+
+
+}

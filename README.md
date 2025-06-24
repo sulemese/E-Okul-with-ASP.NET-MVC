@@ -46,7 +46,7 @@ Silme işlemlerinde veriler kalıcı olarak silinmez, `Aktif` kolonuyla kontrol 
 
 ## 📸 Ekran Görüntüleri
 
-(Ekran görüntülerini buraya eklemen etkileyici olur. Örn: `./images/notlar.png`)
+(`./images/ogrenci-listesi.png`)
 
 ## 📌 Kurulum
 

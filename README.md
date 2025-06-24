@@ -10,6 +10,13 @@ Bu proje, okul yönetim sistemine benzer şekilde ASP.NET MVC ve Entity Framewor
 - Bootstrap 4
 - Razor View Engine
 - C#
+- 
+## 📚 Öğrenilen Konular
+- MVC mimarisiyle katmanlı mimari uygulama
+- Entity Framework ile Database First veri modeli
+- LINQ ile veri sorgulama
+- Soft Delete ile veri kaybı engelleme
+- Razor ile dinamik sayfa oluşturma
 
 ## 📂 Modüller ve Özellikler
 
@@ -37,6 +44,7 @@ Bu proje, okul yönetim sistemine benzer şekilde ASP.NET MVC ve Entity Framewor
 
 ## 🛡 Soft Delete Yöntemi
 Silme işlemlerinde veriler kalıcı olarak silinmez, `Aktif` kolonuyla kontrol edilir. Böylece veri kaybı engellenmiş olur.
+
 
 ## ⚙️ Planlanan Geliştirmeler
 - [ ] Giriş Paneli (Admin & Öğrenci Girişi)

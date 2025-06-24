@@ -46,7 +46,29 @@ Silme işlemlerinde veriler kalıcı olarak silinmez, `Aktif` kolonuyla kontrol 
 
 ## 📸 Ekran Görüntüleri
 
+# Öğrenci Listesi
 ![Öğrenci Listesi](./Images/ogrenci-listesi.png)
+
+# Yeni Öğrenci Ekleme İşlevi
+![Öğrenci Ekleme](./Images/ogrenci-ekle.png)
+
+# Ders Listesi
+![Ders Listesi](./Images/ders-listesi.png)
+
+# Kulüp Listesi
+![Kulüp Listesi](./Images/kulup-listesi.png)
+
+# Kulübe Toplu Öğrenci Atama 
+![Kulübe Toplu Öğrenci Atama ](./Images/kulube-ogrenci-ata.png)
+
+# Not Listesi
+![Not Listesi](./Images/not-listesi.png)
+
+# Öğrencilere Toplu Not Girişi 
+![Toplu Not Girişi  ](./Images/not-girisi.png)
+
+# Model.edmx
+![Model Dosyası ](./Images/model.edmx.png)
 
 ## 📌 Kurulum
 
